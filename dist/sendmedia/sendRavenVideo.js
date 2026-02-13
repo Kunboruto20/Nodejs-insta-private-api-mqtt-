@@ -74,6 +74,8 @@ async function sendRavenVideo(session, videoBuffer, options = {}) {
     upload_id: serverUploadId,
     thread_ids: JSON.stringify([String(threadId)]),
     client_context: clientContext,
+      item_type: 'raven_media',
+    
     _csrftoken: session.state.cookieCsrfToken,
     mutation_token: clientContext,
     offline_threading_id: clientContext,
@@ -87,7 +89,7 @@ async function sendRavenVideo(session, videoBuffer, options = {}) {
     : form;
 
   const broadcastResponse = await session.request.send({
-    url: '/api/v1/direct_v2/threads/broadcast/raven_attachment/',
+    url: '/api/v1/direct_v2/threads/broadcast/raven_media/',/
     method: 'POST',
     form: payloadForm,
     qs: { use_unified_inbox: true },
